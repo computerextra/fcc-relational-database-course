@@ -29,7 +29,7 @@ PSQL="psql --username=freecodecamp --dbname=worldcup --no-align --tuples-only -c
 #echo "$($PSQL "SELECT name FROM games left join teams on games.winner_id = teams.team_id where year=2018 AND round='Final'")"
 
 echo -e "\nList of teams who played in the 2014 'Eighth-Final' round:"
-echo "$($PSQL "SELECT * FROM teams full join games as g on teams.team_id=g.winner_id full join games as gg on teams.team_id=gg.opponent_id where g.year=2014 AND g.round='Eighth-Final'")"
+echo "$($PSQL "SELECT * FROM games as g left join teams as t on t.team_id=g.winner_id left join teams as tt on tt.team_id=g.opponent_id where g.year=2014 AND g.round='Eighth-Final'")"
 
 #echo -e "\nList of unique winning team names in the whole data set:"
 #echo "$($PSQL "SELECT distinct(name) FROM games left join teams on games.winner_id = teams.team_id order by name")"
